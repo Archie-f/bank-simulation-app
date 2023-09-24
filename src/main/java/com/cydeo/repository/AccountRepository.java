@@ -17,4 +17,7 @@ public class AccountRepository {
     }
 
 
+    public List<Account> findAll() {
+        return accountList;
+    }
 }
