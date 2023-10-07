@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Users</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" conten t="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/shards.min.css">
@@ -14,32 +15,34 @@
             <div class="row">
                 <div class="col-md-6">
                     <div>
-                        <form action="#">
+                        <form th:object="${transaction}" action="#">
                             <div class="row">
                                 <div class="form-group blu-margin">
                                     <label for="sender" class="col-form-label">Sender</label>
-                                    <select class="form-control" id="sender">
+                                    <select class="form-control" id="sender" th:field="*{sender}">
                                         <option value="0">Select Account</option>
-                                        <option></option>
+                                        <option th:each="account : ${accounts}" th:value="${account.id}"
+                                        th:text="${account.balance + '-' + account.userId + '-' + account.accountType.name()}"></option>
                                     </select>
                                 </div>
         
                                 <div class="form-group blu-margin">
                                     <label for="receiver" class="col-form-label">Receiver</label>
-                                    <select class="form-control" id="receiver">
+                                    <select class="form-control" id="receiver" th:field="*{receiver}">
                                         <option value="0">Select Account</option>
-                                        <option></option>
+                                        <option th:each="account : ${accounts}" th:value="${account.id}"
+                                        th:text="${account.balance + '-' + account.userId + '-' + account.accountType.name()}"></option>
                                     </select>
                                 </div>
         
                                 <div class="form-group blu-margin">
                                     <label for="amount" class="col-form-label">Amount</label>
-                                    <input type="text" class="form-control" id="amount" placeholder="Amount">
+                                    <input type="text"  th:field="*{amount}" class="form-control" id="amount" placeholder="Amount">
                                 </div>
         
                                 <div class="form-group blu-margin">
                                     <label for="message" class="col-form-label">Message</label>
-                                    <input type="text" class="form-control" id="message" placeholder="Message">
+                                    <input type="text" th:field="*{message}" class="form-control" id="message" placeholder="Message">
                                 </div>
                             </div>
                             <div class="row">
