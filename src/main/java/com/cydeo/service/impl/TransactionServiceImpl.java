@@ -101,12 +101,14 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         //if accounts are the same throw BadRequestException with saying accounts needs to be different
-        if ((sender.getId()).equals(receiver.getId())){
+        System.out.println("sender.getId() = " + sender.getId());
+        System.out.println("receiver.getId() = " + receiver.getId());
+        if ((sender.getId()) == (receiver.getId())){
             throw new BadRequestException("Sender account needs to be different than receiver account");
         }
 
         findAccountById(sender.getId());
-        findAccountById(sender.getId());
+        findAccountById(receiver.getId());
 
 
     }
@@ -123,5 +125,10 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<Transaction> last10Transactions() {
         return transactionRepository.findLast10Transactions();
+    }
+
+    @Override
+    public List<Transaction> findTransactionListById(UUID id) {
+        return transactionRepository.findTransactionListById(id);
     }
 }
