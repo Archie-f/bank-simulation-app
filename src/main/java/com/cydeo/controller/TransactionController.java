@@ -6,11 +6,13 @@ import com.cydeo.service.AccountService;
 import com.cydeo.service.TransactionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.UUID;
 
@@ -42,7 +44,15 @@ public class TransactionController {
     //write a post method that takes transaction object from the UI
     //complete the transfer and return the same page
     @PostMapping("/transfer")
-    public String makeTransfer(@ModelAttribute("transaction") Transaction transaction){
+    public String makeTransfer(@Valid @ModelAttribute("transaction") Transaction transaction, BindingResult bindingResult, Model model){
+
+        if (bindingResult.hasErrors()){
+
+            model.addAttribute("accounts", accountService.listAllAccounts());
+            model.addAttribute("lastTransactions", transactionService.last10Transactions());
+
+            return "transaction/make-transfer";
+        }
 
         //I have UUID of accounts, but I need to provide Account object
         //I need to find accounts based on the ID that I have and use as a parameter to complete makeTransfer method
