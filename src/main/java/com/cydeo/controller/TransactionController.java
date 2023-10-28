@@ -32,7 +32,7 @@ public class TransactionController {
             //provide empty transaction object
         model.addAttribute("transaction", Transaction.builder().build());
             //provide list of all accounts
-        model.addAttribute("accounts", accountService.lisAllAccounts());
+        model.addAttribute("accounts", accountService.listAllAccounts());
             //list of last 10 transactions to fill the table(business logic is missing)
         model.addAttribute("lastTransactions", transactionService.last10Transactions());
 

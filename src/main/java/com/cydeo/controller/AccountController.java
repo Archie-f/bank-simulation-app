@@ -1,17 +1,18 @@
 package com.cydeo.controller;
 
-import com.cydeo.enums.AccountStatus;
 import com.cydeo.enums.AccountType;
 import com.cydeo.model.Account;
-import com.cydeo.repository.AccountRepository;
 import com.cydeo.service.AccountService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,14 +25,14 @@ public class AccountController {
      */
     private final AccountService accountService;
 
-    public AccountController(AccountService accountService, AccountRepository accountRepository) {
+    public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
 
     @GetMapping("/index")
     public String getIndexPage(Model model){
 
-        model.addAttribute("accountList", accountService.lisAllAccounts());
+        model.addAttribute("accountList",accountService.listAllAccounts());
         return "account/index";
     }
 
@@ -40,28 +41,30 @@ public class AccountController {
 
         //we need to provide empty account object
         model.addAttribute("account", Account.builder().build());
-        //we need tp provide accountType enum info for filling the dropdown options
+        //we need to provide accountType enum info for filling the dropdown options
         model.addAttribute("accountTypes", AccountType.values());
 
         return "account/create-account";
     }
 
     //create a method to capture information from ui
-    //print them on the console
-    //trigger createNewAccount method, create the account based on the user input
-    //once user created return back to the index page
+    //print them on the console.
+    //trigger createNewAccount method, create the account based on the user input.
+    //once user created return back to the index page.
     @PostMapping("/create")
-    public String createAccount(@ModelAttribute("account") Account account){
+    public String createAccount(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult,Model model){
+        if(bindingResult.hasErrors()){
 
+            model.addAttribute("accountTypes", AccountType.values());
+            return "account/create-account";
+        }
         System.out.println(account);
         accountService.createNewAccount(account.getBalance(),new Date(),account.getAccountType(),account.getUserId());
-
         return "redirect:/index";
-
     }
 
     @GetMapping("/delete/{id}")
-    public String deactivateAccount(@PathVariable("id") UUID id){
+    public String getDeleteAccount(@PathVariable("id")UUID id){
 
         accountService.deleteAccount(id);
 
@@ -75,5 +78,6 @@ public class AccountController {
 
         return "redirect:/index";
     }
+
 
 }

@@ -12,7 +12,7 @@ public interface AccountService {
 
     Account createNewAccount(BigDecimal balance, Date creationDate, AccountType accountType, Long userID);
 
-    List<Account> lisAllAccounts();
+    List<Account> listAllAccounts();
 
     void deleteAccount(UUID id);
 
