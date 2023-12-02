@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class AccountRepository {
@@ -23,7 +22,7 @@ public class AccountRepository {
         return accountDTOList;
     }
 
-    public AccountDTO findById(UUID id) {
+    public AccountDTO findById(Long id) {
         //TASK
         //complete the method, that find the account inside the list, if not
         //throw RecordNotFoundException

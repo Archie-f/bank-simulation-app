@@ -6,7 +6,6 @@ import com.cydeo.dto.AccountDTO;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public interface AccountService {
 
@@ -14,9 +13,9 @@ public interface AccountService {
 
     List<AccountDTO> listAllAccounts();
 
-    void deleteAccount(UUID id);
+    void deleteAccount(Long id);
 
-    void activateAccount(UUID id);
+    void activateAccount(Long id);
 
     AccountDTO retrieveById(Long id);
 }
