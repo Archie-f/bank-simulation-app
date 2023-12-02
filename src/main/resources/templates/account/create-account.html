@@ -16,7 +16,7 @@
     <h2 class="mb-5">New User</h2>
     <div class="row">
         <div class="col-md-6">
-            <form th:object="${account}"  method="post" th:action="@{/create}">
+            <form th:object="${accountDTO}"  method="post" th:action="@{/create}">
                 <div class="row">
                     <div class="form-group blu-margin">
                         <label for="userId" class="col-form-label">UserId</label>

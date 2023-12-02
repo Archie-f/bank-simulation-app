@@ -30,12 +30,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="transaction : ${transactions}">
-                                    <td th:text="${transaction.getSender()}"></td>
-                                    <td th:text="${transaction.getReceiver()}"></td>
-                                    <td th:text="${transaction.getAmount()}"></td>
-                                    <td th:text="${transaction.getCreateDate()}"></td>
-                                    <td th:text="${transaction.getMessage()}"></td>
+                                <tr th:each="transactionDTO : ${transactions}">
+                                    <td th:text="${transactionDTO.getSender()}"></td>
+                                    <td th:text="${transactionDTO.getReceiver()}"></td>
+                                    <td th:text="${transactionDTO.getAmount()}"></td>
+                                    <td th:text="${transactionDTO.getCreateDate()}"></td>
+                                    <td th:text="${transactionDTO.getMessage()}"></td>
                                 </tr>
                             </tbody>
                         </table>

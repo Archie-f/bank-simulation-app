@@ -15,14 +15,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div>
-                        <form th:object="${transaction}" th:action="@{/transfer}" method="post">
+                        <form th:object="${transactionDTO}" th:action="@{/transfer}" method="post">
                             <div class="row">
                                 <div class="form-group blu-margin">
                                     <label for="sender" class="col-form-label">Sender</label>
                                     <select class="form-control" id="sender" th:field="*{sender}">
                                         <option th:value="''">Select Account</option>
-                                        <option th:each="account : ${accounts}" th:value="${account.id}"
-                                        th:text="${account.balance + '-' + account.userId + '-' + account.accountType.name()}"></option>
+                                        <option th:each="accountDTO : ${accounts}" th:value="${accountDTO.id}"
+                                        th:text="${accountDTO.balance + '-' + accountDTO.userId + '-' + accountDTO.accountType.name()}"></option>
                                     </select>
                                     <span th:if="${#fields.hasErrors('sender')}">
                                         <ul class="alert alert-danger">
@@ -35,8 +35,8 @@
                                     <label for="receiver" class="col-form-label">Receiver</label>
                                     <select class="form-control" id="receiver" th:field="*{receiver}">
                                         <option th:value="''">Select Account</option>
-                                        <option th:each="account : ${accounts}" th:value="${account.id}"
-                                        th:text="${account.balance + '-' + account.userId + '-' + account.accountType.name()}"></option>
+                                        <option th:each="accountDTO : ${accounts}" th:value="${accountDTO.id}"
+                                        th:text="${accountDTO.balance + '-' + accountDTO.userId + '-' + accountDTO.accountType.name()}"></option>
                                     </select>
                                     <span th:if="${#fields.hasErrors('receiver')}">
                                         <ul class="alert alert-danger">

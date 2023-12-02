@@ -1,8 +1,8 @@
 package com.cydeo.service.impl;
 
+import com.cydeo.dto.AccountDTO;
 import com.cydeo.enums.AccountStatus;
 import com.cydeo.enums.AccountType;
-import com.cydeo.model.Account;
 import com.cydeo.repository.AccountRepository;
 import com.cydeo.service.AccountService;
 import org.springframework.stereotype.Component;
@@ -22,19 +22,19 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account createNewAccount(BigDecimal balance, Date creationDate, AccountType accountType, Long userID) {
+    public AccountDTO createNewAccount(BigDecimal balance, Date creationDate, AccountType accountType, Long userID) {
         //we need to create Account object
-        Account account = Account.builder().id(UUID.randomUUID()).userId(userID)
+        AccountDTO accountDTO = AccountDTO.builder().id(UUID.randomUUID()).userId(userID)
                 .balance(balance).accountType(accountType).creationDate(creationDate)
                 .accountStatus(AccountStatus.ACTIVE).build();
 
         //save into the database(repository)
         //return the object created
-        return accountRepository.save(account);
+        return accountRepository.save(accountDTO);
     }
 
     @Override
-    public List<Account> listAllAccounts() {
+    public List<AccountDTO> listAllAccounts() {
         return accountRepository.findAll();
     }
 
@@ -50,7 +50,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account retrieveById(UUID id) {
+    public AccountDTO retrieveById(UUID id) {
         return accountRepository.findById(id);
     }
 
