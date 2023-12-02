@@ -32,7 +32,7 @@ public class TransactionController {
 
         //What we need to provide to make transfer happen
             //provide empty transaction object
-        model.addAttribute("transaction", TransactionDTO.builder().build());
+        model.addAttribute("transaction", new TransactionDTO());
             //provide list of all accounts
         model.addAttribute("accounts", accountService.listAllAccounts());
             //list of last 10 transactions to fill the table(business logic is missing)
@@ -56,8 +56,8 @@ public class TransactionController {
 
         //I have UUID of accounts, but I need to provide Account object
         //I need to find accounts based on the ID that I have and use as a parameter to complete makeTransfer method
-        AccountDTO sender = accountService.retrieveById(transactionDTO.getSender());
-        AccountDTO receiver = accountService.retrieveById(transactionDTO.getReceiver());
+        AccountDTO sender = accountService.retrieveById(transactionDTO.getSender().getId());
+        AccountDTO receiver = accountService.retrieveById(transactionDTO.getReceiver().getId());
         transactionService.makeTransfer(sender,receiver, transactionDTO.getAmount(),new Date(), transactionDTO.getMessage());
 
         return "redirect:/make-transfer";

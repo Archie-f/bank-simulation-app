@@ -39,7 +39,7 @@ public class AccountController {
     public String getCreateForm(Model model){
 
         //we need to provide empty account object
-        model.addAttribute("account", AccountDTO.builder().build());
+        model.addAttribute("account", new AccountDTO());
         //we need to provide accountType enum info for filling the dropdown options
         model.addAttribute("accountTypes", AccountType.values());
 

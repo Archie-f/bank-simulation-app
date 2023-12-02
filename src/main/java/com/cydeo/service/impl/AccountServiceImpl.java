@@ -50,7 +50,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDTO retrieveById(UUID id) {
+    public AccountDTO retrieveById(Long id) {
         return accountRepository.findById(id);
     }
 

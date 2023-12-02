@@ -18,5 +18,5 @@ public interface AccountService {
 
     void activateAccount(UUID id);
 
-    AccountDTO retrieveById(UUID id);
+    AccountDTO retrieveById(Long id);
 }
