@@ -24,9 +24,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO createNewAccount(BigDecimal balance, Date creationDate, AccountType accountType, Long userID) {
         //we need to create Account object
-        AccountDTO accountDTO = AccountDTO.builder().id(UUID.randomUUID()).userId(userID)
-                .balance(balance).accountType(accountType).creationDate(creationDate)
-                .accountStatus(AccountStatus.ACTIVE).build();
+        AccountDTO accountDTO = new AccountDTO();
 
         //save into the database(repository)
         //return the object created
