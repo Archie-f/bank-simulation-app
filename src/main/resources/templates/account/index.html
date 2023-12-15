@@ -43,7 +43,7 @@
             <td><a th:unless="${accountDTO.accountStatus.name() == 'DELETED'}" class="btn btn-danger" th:href="@{/delete/{id}(id=${accountDTO.id})}">Delete</a>
                 <a th:if="${accountDTO.accountStatus.name() == 'DELETED'}" class="btn btn-success" th:href="@{/activate/{id}(id=${accountDTO.id})}">Activate</a>
             </td>
-            <td><a class="btn btn-success" th:href="@{/transactionDTO/{id}(id=${accountDTO.id})}">Account Transaction</a></td>
+            <td><a class="btn btn-success" th:href="@{/transaction/{id}(id=${accountDTO.id})}">Account Transaction</a></td>
           </tr>
           </tbody>
         </table>
