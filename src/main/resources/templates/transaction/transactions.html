@@ -31,8 +31,8 @@
                             </thead>
                             <tbody>
                                 <tr th:each="transactionDTO : ${transactions}">
-                                    <td th:text="${transactionDTO.getSender()}"></td>
-                                    <td th:text="${transactionDTO.getReceiver()}"></td>
+                                    <td th:text="${transactionDTO.getSender().id}"></td>
+                                    <td th:text="${transactionDTO.getReceiver().id}"></td>
                                     <td th:text="${transactionDTO.getAmount()}"></td>
                                     <td th:text="${transactionDTO.getCreateDate()}"></td>
                                     <td th:text="${transactionDTO.getMessage()}"></td>
